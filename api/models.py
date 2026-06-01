@@ -9,7 +9,7 @@ class Contact(db.Model):
 	first_name = db.Column(db.String)
 	last_name = db.Column(db.String)
 
-	emails = db.relationship('Email', back_populates='contact')
+	emails = db.relationship('Email', back_populates='contact', cascade='all, delete-orphan')
 	
 class ContactSchema(Schema):
 	id = fields.Int()
