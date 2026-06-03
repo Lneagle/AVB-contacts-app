@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Contacts CRUD</title>
+	<!-- Bootstrap 5 CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+	<!-- FontAwesome for Icons -->
+	<script src="https://kit.fontawesome.com/d948a5abc1.js" crossorigin="anonymous"></script>
+	<link	rel="stylesheet" href="src/style.css">
+</head>
+<body>
+
+<div class="app-container">
+	
+	<!-- Left Sidebar: Contacts Navigation Master List -->
+	<div class="sidebar">
+		<div class="sidebar-header">
+			<h2>Contacts</h2>
+			<i class="fa-solid fa-circle-plus add-btn-icon"></i>
+		</div>
+		<div class="contact-list">
+			<p class="loading">Loading...</p>
+			<a href="#" class="contact-item">Andra Inde</a>
+
+		</div>
+	</div>
+
+	<!-- Right Content Pane: Selected Contact Detail / Edit Form -->
+	<div class="details-pane">
+		<div class="form-container">
+			<form id="contactEditForm" onsubmit="event.preventDefault();">
+				
+				<!-- Name Row Input Elements -->
+				<div class="row g-4">
+					<div class="col-md-6">
+						<label class="custom-label">First Name</label>
+						<input type="text" class="custom-input" value="Craggy">
+					</div>
+					<div class="col-md-6">
+						<label class="custom-label">Last Name</label>
+						<input type="text" class="custom-input" value="Bramble">
+					</div>
+				</div>
+
+				<!-- Contact Emails Field List Area -->
+				<div class="email-list-container">
+					<label class="custom-label">Email</label>
+					
+					<!-- Dynamic Entry Row 1 -->
+					<div class="email-row">
+						<span class="email-text">craggy.bramble@gmail.com</span>
+						<button type="button" class="remove-email-btn">
+							<i class="fa-solid fa-circle-minus"></i>
+						</button>
+					</div>
+					
+					<!-- Dynamic Entry Row 2 -->
+					<div class="email-row">
+						<span class="email-text">cbramble@marcham.com</span>
+					</div>
+					
+					<!-- Dynamic Entry Row 3 -->
+					<div class="email-row">
+						<span class="email-text">craggy3029@yahoo.com</span>
+					</div>
+
+					<!-- Append Extra Values Interaction Control Trigger -->
+					<button type="button" class="add-email-btn">
+						<i class="fa-solid fa-circle-plus"></i> add email
+					</button>
+				</div>
+			</form>
+		</div>
+
+		<!-- Sticky Form Control Operations Base Container -->
+		<div class="actions-footer">
+			<button type="button" class="btn btn-figma-delete">Delete</button>
+			<div>
+				<button type="button" class="btn btn-figma-cancel">Cancel</button>
+				<button type="submit" form="contactEditForm" class="btn btn-figma-save">Save</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="src/main.js"></script>
+</body>
+</html>    

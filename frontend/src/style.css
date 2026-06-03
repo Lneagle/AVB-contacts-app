@@ -1,0 +1,193 @@
+
+body, html {
+  height: 100%;
+  margin: 0;
+  background-color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #333333;
+}
+/* Layout Wrappers */
+.app-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+/* Left Sidebar Styling */
+.sidebar {
+  width: 260px;
+  border-right: 1px solid #e5e5e5;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #ffffff;
+}
+.sidebar-header {
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sidebar-header h2 {
+  font-size: 32px;
+  font-weight: 500;
+  margin: 0;
+  color: #000000;
+}
+.add-btn-icon {
+  color: #4c84ff;
+  font-size: 28px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.add-btn-icon:hover {
+  opacity: 0.8;
+}
+.contact-list {
+  overflow-y: auto;
+  flex-grow: 1;
+  padding-bottom: 20px;
+}
+.contact-item {
+  padding: 10px 24px;
+  font-size: 15px;
+  color: #4a4a4a;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.contact-item:hover {
+  background-color: #f5f5f5;
+  color: #000000;
+}
+.contact-item.active {
+  background-color: #4c84ff;
+  color: #ffffff;
+  font-weight: 400;
+}
+/* Right Details Pane Styling */
+.details-pane {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 80px 60px 40px 60px;
+  background-color: #ffffff;
+  overflow-y: auto;
+}
+.form-container {
+  max-width: 800px;
+  width: 100%;
+  flex-grow: 1;
+}
+/* Custom Light Input Styling matching Figma */
+.custom-label {
+  font-size: 11px;
+  color: #8a8a8a;
+  margin-bottom: 4px;
+  display: block;
+}
+.custom-input {
+  border: 1px solid #e2e8f0;
+  background-color: #f8fafc;
+  border-radius: 4px;
+  padding: 10px 14px;
+  font-size: 15px;
+  color: #333333;
+  width: 100%;
+  transition: all 0.2s;
+}
+.custom-input:focus {
+  outline: none;
+  border-color: #cbd5e1;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 2px rgba(76, 132, 255, 0.1);
+}
+/* Email Rows Section */
+.email-list-container {
+  margin-top: 25px;
+}
+.email-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+.email-text {
+  color: #4a4a4a;
+  margin-right: 12px;
+}
+.remove-email-btn {
+  color: #ff5252;
+  font-size: 18px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+}
+.add-email-btn {
+  color: #4c84ff;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+/* Bottom Sticky Action Buttons Layout */
+.actions-footer {
+  margin-top: auto;
+  padding-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 800px;
+  width: 100%;
+}
+.btn-figma-delete {
+  background-color: #ff5252;
+  color: white;
+  border: none;
+  padding: 10px 32px;
+  font-size: 16px;
+  border-radius: 4px;
+  min-width: 120px;
+}
+.btn-figma-delete:hover {
+  background-color: #e04343;
+  color: white;
+}
+.btn-figma-cancel {
+  background: none;
+  border: 1px solid #b0b0b0;
+  color: #333333;
+  padding: 10px 36px;
+  font-size: 16px;
+  border-radius: 4px;
+  margin-right: 12px;
+  min-width: 120px;
+}
+.btn-figma-cancel:hover {
+  background-color: #f5f5f5;
+}
+.btn-figma-save {
+  background-color: #4c84ff;
+  color: white;
+  border: none;
+  padding: 10px 36px;
+  font-size: 16px;
+  border-radius: 4px;
+  min-width: 120px;
+}
+.btn-figma-save:hover {
+  background-color: #3b6edd;
+  color: white;
+}
