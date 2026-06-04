@@ -18,70 +18,19 @@
 	<div class="sidebar">
 		<div class="sidebar-header">
 			<h2>Contacts</h2>
-			<i class="fa-solid fa-circle-plus add-btn-icon"></i>
+			<button type="button" class="add-contact-btn">
+				<i class="fa-solid fa-circle-plus add-btn-icon"></i>
+			</button>
 		</div>
 		<div class="contact-list">
-			<p class="loading">Loading...</p>
-			<a href="#" class="contact-item">Andra Inde</a>
-
+			<p id="loading">Loading...</p>
 		</div>
 	</div>
 
 	<!-- Right Content Pane: Selected Contact Detail / Edit Form -->
 	<div class="details-pane">
-		<div class="form-container">
-			<form id="contactEditForm" onsubmit="event.preventDefault();">
-				
-				<!-- Name Row Input Elements -->
-				<div class="row g-4">
-					<div class="col-md-6">
-						<label class="custom-label">First Name</label>
-						<input type="text" class="custom-input" value="Craggy">
-					</div>
-					<div class="col-md-6">
-						<label class="custom-label">Last Name</label>
-						<input type="text" class="custom-input" value="Bramble">
-					</div>
-				</div>
-
-				<!-- Contact Emails Field List Area -->
-				<div class="email-list-container">
-					<label class="custom-label">Email</label>
-					
-					<!-- Dynamic Entry Row 1 -->
-					<div class="email-row">
-						<span class="email-text">craggy.bramble@gmail.com</span>
-						<button type="button" class="remove-email-btn">
-							<i class="fa-solid fa-circle-minus"></i>
-						</button>
-					</div>
-					
-					<!-- Dynamic Entry Row 2 -->
-					<div class="email-row">
-						<span class="email-text">cbramble@marcham.com</span>
-					</div>
-					
-					<!-- Dynamic Entry Row 3 -->
-					<div class="email-row">
-						<span class="email-text">craggy3029@yahoo.com</span>
-					</div>
-
-					<!-- Append Extra Values Interaction Control Trigger -->
-					<button type="button" class="add-email-btn">
-						<i class="fa-solid fa-circle-plus"></i> add email
-					</button>
-				</div>
-			</form>
-		</div>
-
-		<!-- Sticky Form Control Operations Base Container -->
-		<div class="actions-footer">
-			<button type="button" class="btn btn-figma-delete">Delete</button>
-			<div>
-				<button type="button" class="btn btn-figma-cancel">Cancel</button>
-				<button type="submit" form="contactEditForm" class="btn btn-figma-save">Save</button>
-			</div>
-		</div>
+		
+		
 	</div>
 </div>
 <script src="src/main.js"></script>
