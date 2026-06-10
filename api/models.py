@@ -16,7 +16,7 @@ class ContactSchema(Schema):
 	first_name = fields.String()
 	last_name = fields.String()
 	
-	emails = fields.List(fields.Nested(lambda: EmailSchema(only=('email',))))
+	emails = fields.List(fields.Nested(lambda: EmailSchema()))
 
 class Email(db.Model):
 	__tablename__ = 'emails'

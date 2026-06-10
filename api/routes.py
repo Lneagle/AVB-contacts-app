@@ -27,6 +27,11 @@ class AllContacts(Resource):
 		try:
 			new_contact = Contact(first_name=request_json['first_name'], last_name=request_json['last_name'])
 			db.session.add(new_contact)
+			if request_json['emails']:
+				for email in request_json['emails']:
+					new_email = Email(email=email)
+					new_email.contact = new_contact
+					db.session.add(new_email)
 			db.session.commit()
 			return ContactSchema().dump(new_contact), 201
 		except IntegrityError as e:
