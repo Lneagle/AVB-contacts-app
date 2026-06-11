@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5555";
+const API_URL = "https://avb-contacts-app.vercel.app";
 let results = [];
 
 // Display the list of contacts
