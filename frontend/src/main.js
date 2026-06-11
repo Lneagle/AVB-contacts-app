@@ -80,6 +80,10 @@ function displayEditForm(contact, isNew) {
   `;
   editForm.append(nameRow);
 
+  const nameErrorRow = document.createElement('div');
+  nameErrorRow.id = "name-error";
+  editForm.append(nameErrorRow);
+
   const emailContainer = document.createElement('div');
   emailContainer.classList.add('email-list-container');
   emailContainer.innerHTML = '<label class="custom-label">Email</label>';
@@ -95,7 +99,8 @@ function displayEditForm(contact, isNew) {
     emailDeleteButton.addEventListener('click', (event) => {
       event.preventDefault();
       actions.push(['-', email.id]);
-      event.currentTarget.parentElement.remove();
+      event.currentTarget.parentElement.classList.add('to-be-deleted');
+      event.currentTarget.remove();
     })
     emailRow.append(emailDeleteButton);
     emailContainer.append(emailRow);
@@ -113,20 +118,36 @@ function displayEditForm(contact, isNew) {
     saveEmail.textContent = 'Save Email';
     saveEmail.addEventListener('click', (event) => {
       event.preventDefault();
-      if (!isNew) {
-        actions.push(['+', document.querySelector('#email-input').value]);
+      let isValid = true;
+      const emailValue = document.querySelector('#email-input').value.trim();
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const emailErrorMessage = document.getElementById('email-error');
+      emailErrorMessage.innerText = '';
+      if (emailValue == '' || !emailPattern.test(emailValue)) {
+        emailErrorMessage.innerText = 'Please enter a valid email address'
+        isValid = false;
+        document.getElementById('email-input').addEventListener('focus', (event) => {
+          document.getElementById('email-error').innerText = '';
+        });
       }
-      const emailRow = document.createElement('div');
-      emailRow.classList.add('email-row');
-      emailRow.innerHTML = `
-        <span class="email-text">${document.querySelector('#email-input').value}</span>
-      `
-      addEmailButton.before(emailRow);
-      newEmail.remove();
-      addEmailButton.classList.remove('hidden');
+
+      if (isValid) {
+        if (!isNew) {
+          actions.push(['+', emailValue]);
+        }
+        const emailRow = document.createElement('div');
+        emailRow.classList.add('email-row');
+        emailRow.innerHTML = `
+          <span class="email-text">${emailValue}</span>
+        `;
+        addEmailButton.before(emailRow);
+        newEmail.remove();
+        addEmailButton.classList.remove('hidden');
+      }
     });
     newEmail.append(saveEmail);
     addEmailButton.before(newEmail);
+    newEmail.insertAdjacentHTML('afterend', '<p id="email-error"></p>');
   });
   emailContainer.append(addEmailButton);
   editForm.append(emailContainer);
@@ -162,28 +183,47 @@ function displayEditForm(contact, isNew) {
   saveButton.textContent = 'Save';
   saveButton.addEventListener('click', (event) => {
     event.preventDefault();
-    if (isNew) {
-      const contactToSend = JSON.stringify({
-        "first_name": document.getElementById('first-name').value,
-        "last_name": document.getElementById('last-name').value,
-        "emails": Array.from(document.querySelectorAll('.email-text')).map(el => el.textContent)
+    let isValid = true;
+    const firstName = document.getElementById('first-name').value;
+    const lastName = document.getElementById('last-name').value;
+    const errorMessage = document.getElementById('name-error');
+    errorMessage.innerText = '';
+
+    if (firstName.trim() === '') {
+      errorMessage.innerText = 'First name is required';
+      isValid = false;
+      document.getElementById('first-name').addEventListener('focus', (event) => {
+        document.getElementById('name-error').innerText = '';
       });
-      addContact(contactToSend);
-    } else {
-      const newName = {};
-      const firstName = document.getElementById('first-name').value;
-      const lastName = document.getElementById('last-name').value;
-      if (contact.first_name != firstName) {
-        newName['first_name'] = firstName;
+    } else if (lastName.trim() === '') {
+      errorMessage.innerText = 'Last name is required';
+      isValid = false;
+      document.getElementById('last-name').addEventListener('focus', (event) => {
+        document.getElementById('name-error').innerText = '';
+      });
+    }
+
+    if (isValid) {
+      if (isNew) {
+        const contactToSend = JSON.stringify({
+          "first_name": firstName,
+          "last_name": lastName,
+          "emails": Array.from(document.querySelectorAll('.email-text')).map(el => el.textContent)
+        });
+        addContact(contactToSend);
+      } else {
+        const newName = {};
+        if (contact.first_name != firstName) {
+          newName['first_name'] = firstName;
+        }
+        if (contact.last_name != lastName) {
+          newName['last_name'] = lastName;
+        }
+        if (Object.keys(newName).length > 0) {
+          actions.push(['name', newName]);
+        }
+        handleSave(contact.id, actions);
       }
-      if (contact.last_name != lastName) {
-        newName['last_name'] = lastName;
-      }
-      if (Object.keys(newName).length > 0) {
-        actions.push(['name', newName]);
-      }
-      console.log(actions);
-      handleSave(contact.id, actions);
     }
   });
 

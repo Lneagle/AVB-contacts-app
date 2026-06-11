@@ -115,6 +115,9 @@ body, html {
   background-color: #ffffff;
   box-shadow: 0 0 0 2px rgba(76, 132, 255, 0.1);
 }
+#name-error, #email-error {
+  color: red;
+}
 /* Email Rows Section */
 .email-list-container {
   margin-top: 25px;
@@ -142,6 +145,9 @@ body, html {
 }
 .email-row:hover .remove-email-btn {
   visibility:visible;
+}
+.to-be-deleted {
+  text-decoration: line-through red;
 }
 .add-email-btn, .add-contact-btn {
   color: #4c84ff;
@@ -204,7 +210,7 @@ body, html {
   padding: 7px 20px;
 }
 .btn-email-save {
-  padding: 3px 8px;
+  padding: 3px 10px;
   min-width: 0;
   margin-left: 1rem;
 }
